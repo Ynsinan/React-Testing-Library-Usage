@@ -10,19 +10,30 @@ const MockFollowersList = () => {
   );
 };
 describe("FollowersList", () => {
-  it("should renders follower items", async () => {
+  beforeEach(() => {
+    // console.log("beforeEach");
+    jest.mock("axios");
+  });
+  //   beforeAll(() => {
+  //     console.log("beforeAll");
+  //   });
+  //   afterEach(() => {
+  //     console.log("afterEach");
+  //   });
+
+  //   afterAll(() => {
+  //     console.log("afterAll");
+  //   });
+
+  it("should fetch and render input element", async () => {
     render(<MockFollowersList />);
-    //await getByTestId ile çalışmaz
-    // const followerDivElement = await screen.getByTestId("follower-item-0");
-    const followerDivElement = await screen.findByTestId("follower-item-0");
+    const followerDivElement = await screen.findByTestId(`follower-item-0`);
     expect(followerDivElement).toBeInTheDocument();
   });
 
   it("should render multiple follower items", async () => {
     render(<MockFollowersList />);
-    //await getByTestId ile çalışmaz
-    // const followerDivElement = await screen.getByTestId("follower-item-0");
-    const followerDivElement = await screen.findAllByTestId(/follower-item/i);
-    expect(followerDivElement.length).toBe(5);
+    const followerDivElement = await screen.findByTestId(`follower-item-0`);
+    expect(followerDivElement).toBeInTheDocument();
   });
 });
